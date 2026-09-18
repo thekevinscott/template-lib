@@ -3,7 +3,9 @@ version = 1
 
 # Three artifacts, one binary. Python ships a maturin-built wheel per
 # target; npm ships a top-level package + per-platform sub-packages.
-# Cascade: edits under packages/rust/** retrigger PyPI + npm builds.
+# Cascade: Rust source edits retrigger PyPI + npm builds.
+# Split root files from subtrees to keep gate config and bookkeeping out
+# of releases. Use extglobs: leading ! patterns do not subtract matches.
 
 [[package]]
 name = "mynewproduct-rust"
@@ -12,7 +14,8 @@ crate = "mynewproduct"
 path = "packages/rust"
 first_version = "0.0.1"
 globs = [
-  "packages/rust/**",
+  "packages/rust/!(testing-conventions.toml)",
+  "packages/rust/!(changelog.d|migrations.d|e2e-attestations)/**",
   "LICENSE",
 ]
 
@@ -25,8 +28,10 @@ first_version = "0.0.1"
 build = "maturin"
 depends_on = ["mynewproduct-rust"]
 globs = [
-  "packages/python/**",
-  "packages/rust/**",
+  "packages/python/!(testing-conventions.toml)",
+  "packages/python/!(changelog.d|migrations.d|e2e-attestations)/**",
+  "packages/rust/!(testing-conventions.toml)",
+  "packages/rust/!(changelog.d|migrations.d|e2e-attestations)/**",
   "LICENSE",
 ]
 targets = [
@@ -46,8 +51,10 @@ first_version = "0.0.1"
 build = [{ mode = "bundled-cli", name = "@mynewproduct/{triple}" }]
 depends_on = ["mynewproduct-rust"]
 globs = [
-  "packages/node/**",
-  "packages/rust/**",
+  "packages/node/!(testing-conventions.toml)",
+  "packages/node/!(changelog.d|migrations.d|e2e-attestations)/**",
+  "packages/rust/!(testing-conventions.toml)",
+  "packages/rust/!(changelog.d|migrations.d|e2e-attestations)/**",
   "LICENSE",
 ]
 targets = [
