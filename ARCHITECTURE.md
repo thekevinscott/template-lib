@@ -20,8 +20,10 @@ docs/        VitePress site (published to GitHub Pages).
 
 `putitoutthere.toml` declares the three artifacts and their dependency
 cascade. The `Release` workflow (`.github/workflows/release.yml`) calls
-the reusable workflow at `thekevinscott/putitoutthere`. Edits under
-`packages/rust/**` retrigger PyPI and npm builds via the cascade.
+the reusable workflow at `thekevinscott/putitoutthere`. Rust package changes
+retrigger PyPI and npm builds via the cascade. Release globs exclude each
+package's `testing-conventions.toml`, `changelog.d/`, `migrations.d/`, and
+`e2e-attestations/` bookkeeping, including the Rust paths watched by its wrappers.
 
 ## CI gates
 
