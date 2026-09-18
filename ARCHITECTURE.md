@@ -26,9 +26,31 @@ the reusable workflow at `thekevinscott/putitoutthere`. Edits under
 ## CI gates
 
 - Per-language workflow (`rust.yml`, `python.yml`, `node.yml`) runs lint + test + build with path filters.
+- [`conventions.yml`](.github/workflows/conventions.yml) calls the upstream [testing-conventions workflow](https://github.com/thekevinscott/testing-conventions/blob/v0/.github/workflows/testing-conventions.yml) at `v0`; its current coverage is described below.
 - `changelog.yml` enforces a changelog fragment under `docs/changelog.d/` on PRs that touch package code.
 - `docs.yml` builds + deploys the VitePress site.
 - `pr-monitor.yml` gates merge on the aggregate CI status.
+
+Testing conventions cover colocated tests and source/test co-change, unit-test
+isolation and mocking hygiene, one function per file, unit and changed-line
+coverage, mutation testing on changed lines, integration-test layout, exclusion
+of tests from built distributions, and E2E attestation freshness. Gates run
+when applicable to the detected sources, distributions, and attestations.
+
+The Python lane scans `packages/python` with upstream defaults; this binary-only
+wrapper currently has no Python source files. The TypeScript lane scans
+`packages/node/src` with a `gates:` allowlist containing only `colocated-test`,
+`unit-lint`, and `integration-lint`. It omits `unit-coverage` (including
+changed-line coverage), `mutation`, `packaging`, and `e2e-verify`, as well as
+the upstream `one-function-per-file` gate. The allowlist was introduced because
+unpublished placeholder optional dependencies block frozen-lockfile installs.
+There is no Rust conventions lane yet; Rust's separate lint/test/build workflow
+does not replace those checks.
+
+[#43](https://github.com/thekevinscott/template-lib/issues/43) tracks restoring
+upstream defaults on every lane: resolve the install blocker, remove the
+TypeScript allowlist, and add Rust. The intended template policy is no custom
+`testing-conventions.toml` or exemptions, so clones inherit the full standard.
 
 ## Public-API surface
 
