@@ -79,8 +79,11 @@ mynewproduct/
 ```python
 """mynewproduct - one-line description."""
 
+from importlib.metadata import version
+
 from mynewproduct.errors import MyNewProductError, ValidationError, NotFoundError
-from mynewproduct._version import __version__
+
+__version__ = version("mynewproduct")
 
 __all__ = ["MyNewProductError", "ValidationError", "NotFoundError", "__version__"]
 ```
