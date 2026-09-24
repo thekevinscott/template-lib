@@ -11,7 +11,6 @@ Conventions, supervision rules, and per-language style live under
 - `docs/internals/rust/` — Rust style, testing, shipping, review, code-smells.
 - `docs/internals/python/` — Python style, testing, shipping, review, setup.
 - `docs/internals/typescript/` — TypeScript style, testing, shipping, review, setup.
-- `docs/internals/session-handoff.md` — maintain a standalone handoff doc per session and re-send it at every stopping point.
 
 ## Workflow
 
@@ -61,3 +60,5 @@ Before the first `Release` run on a fresh scaffold:
 
 - Don't add unsolicited refactors or hypothetical-future abstractions.
 - Don't bypass hooks or CI gates without an explicit reason in the PR body.
+
+@docs/internals/session-handoff.md
