@@ -20,6 +20,8 @@ on:
   pull_request:
     paths:
       - 'packages/**'
+      - '!packages/*/changelog.d/**'
+      - '!packages/*/migrations.d/**'
       - '.github/workflows/conventions.yml'
 
 permissions:

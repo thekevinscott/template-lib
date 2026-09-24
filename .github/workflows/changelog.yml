@@ -3,6 +3,11 @@ name: Changelog
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
+    paths:
+      - 'packages/**'
+      - 'docs/changelog.d/**'
+      - 'docs/migrations.d/**'
+      - '.github/workflows/changelog.yml'
 
 permissions:
   contents: read

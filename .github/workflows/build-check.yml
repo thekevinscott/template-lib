@@ -9,11 +9,17 @@ name: Build Check
 
 on:
   pull_request:
-    # Scoped to build inputs — the union of the putitoutthere.toml globs
-    # (packages/**, LICENSE) plus the config and this workflow. Docs-only
-    # and internals-only PRs skip the heavy per-target matrix.
+    # Mirrors the union of the putitoutthere.toml globs. Exclusions must stay
+    # a subset of the toml's carve-outs, or a merge can release something
+    # this never built.
     paths:
-      - 'packages/**'
+      - 'packages/rust/**'
+      - 'packages/python/**'
+      - 'packages/node/**'
+      - '!packages/*/testing-conventions.toml'
+      - '!packages/*/changelog.d/**'
+      - '!packages/*/migrations.d/**'
+      - '!packages/*/e2e-attestations/**'
       - 'putitoutthere.toml'
       - 'LICENSE'
       - '.github/workflows/build-check.yml'

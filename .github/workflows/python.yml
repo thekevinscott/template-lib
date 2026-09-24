@@ -5,6 +5,8 @@ on:
     paths:
       - 'packages/python/**'
       - 'packages/rust/**'
+      - '!packages/*/changelog.d/**'
+      - '!packages/*/migrations.d/**'
       - '.github/workflows/python.yml'
 
 permissions:
