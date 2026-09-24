@@ -1,5 +1,7 @@
 [build-system]
-requires = ["maturin>=1.7,<2.0"]
+# maturin 1.15.0 rejects a bare `--interpreter 3.14` for bin bindings, which
+# putitoutthere passes. Lift the cap once either side is fixed.
+requires = ["maturin>=1.7,<1.15"]
 build-backend = "maturin"
 
 [project]
@@ -12,7 +14,7 @@ license = { text = "MIT" }
 authors = [{ name = "Kevin Scott", email = "me@thekevinscott.com" }]
 
 [project.urls]
-Repository = "https://github.com/thekevinbot/template-lib"
+Repository = "https://github.com/thekevinscott/template-lib"
 
 [tool.maturin]
 manifest-path = "../rust/Cargo.toml"
