@@ -27,4 +27,19 @@ describe('bin', () => {
     expect(stderr).toHaveBeenCalledWith('boom\n');
     stderr.mockRestore();
   });
+
+  it('launches and exits with the binary code when run as the entry point', async () => {
+    vi.resetModules();
+    vi.doMock('bin-shim', async () => ({
+      ...(await vi.importActual<typeof import('bin-shim')>('bin-shim')),
+      main: vi.fn().mockResolvedValue(5),
+    }));
+    const argv1 = process.argv[1];
+    process.argv[1] = new URL('./bin.ts', import.meta.url).pathname;
+    const exit = vi.spyOn(process, 'exit').mockImplementation(() => undefined as never);
+    await import('./bin');
+    await vi.waitFor(() => expect(exit).toHaveBeenCalledWith(5));
+    process.argv[1] = argv1;
+    exit.mockRestore();
+  });
 });
