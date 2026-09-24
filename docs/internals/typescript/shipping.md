@@ -306,8 +306,7 @@ only at install time, on one platform:
 The flat layout is also what keeps the binary executable. The engine's
 `pickMainFile` takes the first non-`package.json` entry; under a nested layout
 that is the `bin` *directory*, so the manifest gets `"main": "bin"` and the
-release-time chmod applies to a directory rather than the binary
-(thekevinscott/putitoutthere#626).
+release-time chmod applies to a directory rather than the binary.
 
 `putitoutthere.toml` for the polyglot release:
 

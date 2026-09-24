@@ -6,7 +6,7 @@
 // recipe cross-compiles them (see `[package.bundle_cli]` in putitoutthere.toml),
 // which is what stamps the crate version before `cargo build` runs. Building
 // them from this script bakes a stale `CARGO_PKG_VERSION` into every published
-// binary (#34) — the release run never bumps the on-disk Cargo.toml. The engine
+// binary — the release run never bumps the on-disk Cargo.toml. The engine
 // stages each binary flat at the platform-package root, where its npm-platform
 // handler picks it up.
 

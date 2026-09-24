@@ -69,7 +69,7 @@ targets = [
 # shape, but the reusable workflow gates every bundled-cli step on this block
 # existing — `write-crate-version` included. Without it the npm binaries are
 # built by packages/node/scripts/build.mjs against an unbumped Cargo.toml, and
-# each release ships a binary reporting the previous version (#34).
+# each release ships a binary reporting the previous version.
 [package.bundle_cli]
 bin = "mynewproduct"
 crate_path = "packages/rust"
