@@ -60,3 +60,5 @@ Before the first `Release` run on a fresh scaffold:
 
 - Don't add unsolicited refactors or hypothetical-future abstractions.
 - Don't bypass hooks or CI gates without an explicit reason in the PR body.
+
+@docs/internals/session-handoff.md
