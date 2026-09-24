@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'packages/rust/**'
+      - '!packages/rust/changelog.d/**'
+      - '!packages/rust/migrations.d/**'
       - '.github/workflows/rust.yml'
 
 permissions:

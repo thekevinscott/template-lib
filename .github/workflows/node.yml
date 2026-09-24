@@ -5,6 +5,8 @@ on:
     paths:
       - 'packages/node/**'
       - 'packages/rust/**'
+      - '!packages/*/changelog.d/**'
+      - '!packages/*/migrations.d/**'
       - '.github/workflows/node.yml'
 
 permissions:
