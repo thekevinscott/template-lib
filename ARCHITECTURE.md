@@ -47,9 +47,7 @@ unpublished placeholder optional dependencies block frozen-lockfile installs.
 There is no Rust conventions lane yet; Rust's separate lint/test/build workflow
 does not replace those checks.
 
-[#43](https://github.com/thekevinscott/template-lib/issues/43) tracks restoring
-upstream defaults on every lane: resolve the install blocker, remove the
-TypeScript allowlist, and add Rust. The intended template policy is no custom
+The intended template policy is upstream defaults on every lane, with no custom
 `testing-conventions.toml` or exemptions, so clones inherit the full standard.
 
 ## Public-API surface
