@@ -12,6 +12,16 @@ Conventions, supervision rules, and per-language style live under
 - `docs/internals/python/` — Python style, testing, shipping, review, setup.
 - `docs/internals/typescript/` — TypeScript style, testing, shipping, review, setup.
 
+## Package layout
+
+- `packages/` holds public-facing packages published to a registry.
+- `internals/` holds internal-only packages, built and tested to the same
+  standards but never published. Private workspaces that only produce build
+  artifacts for a published package belong here too.
+- The existing root-level `ci/` package is an exception: keep CI logic there
+  under the workflow policy below until its removal or relocation is resolved
+  in issue #48. This convention does not move it.
+
 ## Workflow
 
 - Use `just` for local tasks (`just lint`, `just test`, `just ci`).
