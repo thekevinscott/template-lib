@@ -352,6 +352,20 @@ concurrency:
 
 **Use `putitoutthere`.** Single reusable workflow, single config file, OIDC trusted publishers across PyPI / crates.io / npm. Versions derive from git tags via `hatch-vcs`. Provenance, retry-with-backoff, tag rollback, registry idempotency are all inside the workflow. Cross-cutting CHANGELOG / MIGRATIONS rules live in [../repo.md](../repo.md).
 
+### Version source
+
+putitoutthere never edits `pyproject.toml`, so the build backend must derive the release version itself. Three shapes reach it:
+
+| Backend | Version source | How the release version arrives |
+| --- | --- | --- |
+| hatch-vcs | `[tool.hatch.version] source = "vcs"` | `SETUPTOOLS_SCM_PRETEND_VERSION` |
+| setuptools-scm | `[tool.setuptools_scm]` | `SETUPTOOLS_SCM_PRETEND_VERSION` |
+| maturin | sibling `Cargo.toml` | putitoutthere rewrites the manifest pre-build |
+
+**The fourth shape is a trap.** Plain hatchling with `[tool.hatch.version] path = "src/pkg/_version.py"` passes putitoutthere's PR-time check (`dynamic = ["version"]` plus a `[tool.hatch.version]` block), but nothing rewrites that literal and hatchling ignores `SETUPTOOLS_SCM_PRETEND_VERSION`. The wheel silently ships whatever is on disk. A fork that prunes Rust loses maturin's version source and must switch to hatch-vcs, not this. The upstream gate is tracked in [putitoutthere#696](https://github.com/thekevinscott/putitoutthere/issues/696).
+
+**Runtime `__version__` reads installed metadata**, never a literal: `__version__ = importlib.metadata.version("mynewproduct")`. A literal is the same bug one layer up.
+
 ### `putitoutthere.toml`
 
 Repo-root config. Prescriptive schema — every package declares the same fields; defaults stay implicit.
