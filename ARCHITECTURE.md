@@ -39,11 +39,7 @@ when applicable to the detected sources, distributions, and attestations.
 
 The Python lane scans `packages/python` with upstream defaults; this binary-only
 wrapper currently has no Python source files. The TypeScript lane scans
-`packages/node/src` with a `gates:` allowlist containing only `colocated-test`,
-`unit-lint`, and `integration-lint`. It omits `unit-coverage` (including
-changed-line coverage), `mutation`, `packaging`, and `e2e-verify`, as well as
-the upstream `one-function-per-file` gate. The allowlist was introduced because
-unpublished placeholder optional dependencies block frozen-lockfile installs.
+`packages/node/src` with upstream defaults.
 There is no Rust conventions lane yet; Rust's separate lint/test/build workflow
 does not replace those checks.
 
