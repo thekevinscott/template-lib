@@ -46,7 +46,7 @@ Merge commits are omitted (their content is in the child commits listed).
 
 ### PRs #184/#185 — `extract` callback + default `files` table
 - `925ed94` **Require CI to go red for the right reason before implementing** — ✅
-  *Touched:* `AGENTS.md`. *Keep:* the red/green discipline rule (adapt into `CLAUDE.md`/`internals/`).
+  *Touched:* `AGENTS.md`. *Keep:* the red/green discipline rule (adapt into `AGENTS.md`/`internals/`).
 - `84d6ed6` test: binary file under a glob (RED) — ❌ (`packages/rust/tests/sdk.rs`)
 - `caa7fec` test: rustfmt the RED test — ❌
 - `ba0922d` Drop `content` from `extract` callback — ❌ (cross-language API change; 30+ src/test/doc files)
