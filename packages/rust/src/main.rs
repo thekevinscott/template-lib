@@ -1,5 +1,6 @@
 use std::process::ExitCode;
 
+// clap errors exit through clap_err.exit() to keep clap's own formatting.
 fn main() -> ExitCode {
     match mynewproduct::run(std::env::args_os()) {
         Ok(code) => ExitCode::from(code as u8),
