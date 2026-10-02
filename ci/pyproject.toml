@@ -6,7 +6,7 @@ name = "template-lib-ci"
 version = "0.0.0"
 description = "Repo-internal CLI backing this repo's CI gates; never published."
 requires-python = ">=3.12"
-dependencies = ["pyyaml>=6.0"]
+dependencies = []
 classifiers = ["Private :: Do Not Upload"]
 
 [project.scripts]
