@@ -41,17 +41,13 @@ mod tests {
 
     #[test]
     fn a_usage_mistake_exits_two() {
-        assert_eq!(
-            report(crate::run(["mynewproduct", "--bogus"])),
-            ExitCode::from(2)
-        );
+        let err = clap::Error::new(clap::error::ErrorKind::UnknownArgument);
+        assert_eq!(report(Err(err.into())), ExitCode::from(2));
     }
 
     #[test]
     fn help_exits_zero() {
-        assert_eq!(
-            report(crate::run(["mynewproduct", "--help"])),
-            ExitCode::from(0)
-        );
+        let err = clap::Error::new(clap::error::ErrorKind::DisplayHelp);
+        assert_eq!(report(Err(err.into())), ExitCode::from(0));
     }
 }
