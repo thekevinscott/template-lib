@@ -9,7 +9,13 @@ jobs:
   # Preflight gate for first-publish prerequisites. Fails fast with an
   # actionable error before the reusable workflow runs, so a misconfigured
   # release does not produce confusing 404s deep in the publish step.
+  #
+  # Skipped in the template repo itself (Settings -> Template repository),
+  # which has no real packages to publish. Forks and repos created via
+  # "Use this template" don't inherit that flag, so they release normally.
+  # Every downstream job needs this one, so the whole run is skipped.
   preflight:
+    if: ${{ !github.event.repository.is_template }}
     runs-on: ubuntu-latest
     steps:
       - name: Repo visibility check
