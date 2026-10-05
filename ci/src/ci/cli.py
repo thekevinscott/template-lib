@@ -11,7 +11,7 @@ from __future__ import annotations
 import argparse
 import sys
 
-from ci import bootstrap_npm, check_changelog, lint_workflow_scripts
+from ci import check_changelog
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -27,26 +27,6 @@ def _build_parser() -> argparse.ArgumentParser:
         "(reads BASE_SHA / HEAD_SHA from the environment).",
     )
     check.set_defaults(entry=check_changelog.run)
-
-    lint = sub.add_parser(
-        "lint-workflow-scripts",
-        help="Fail on non-trivial inline scripts in workflow / action YAML.",
-    )
-    lint.add_argument(
-        "paths",
-        nargs="*",
-        help="YAML files to scan (default: .github/workflows/ and "
-        ".github/actions/ relative to the current directory — run from the "
-        "repo root).",
-    )
-    lint.set_defaults(entry=lint_workflow_scripts.run)
-
-    bootstrap = sub.add_parser(
-        "bootstrap-npm",
-        help="Publish 0.0.0-bootstrap npm stubs "
-        "(reads PACKAGES from the environment).",
-    )
-    bootstrap.set_defaults(entry=bootstrap_npm.run)
 
     return parser
 

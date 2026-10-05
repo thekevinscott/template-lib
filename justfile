@@ -70,7 +70,7 @@ docs-build:
 # Gate: fail if any workflow / composite-action YAML encodes a non-trivial
 # inline script (docs/internals/repo.md). Run from the repo root.
 gha-lint:
-    uv run --project ci ci lint-workflow-scripts
+    npx --yes testing-conventions workflow-lint
 
 gha-test:
     cd ci && uv run pytest
