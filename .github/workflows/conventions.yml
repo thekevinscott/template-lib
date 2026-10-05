@@ -13,9 +13,9 @@ name: Testing Conventions
 # reusable workflow.
 #
 # Per-language `source` because this is a monorepo: Python sources live under
-# packages/python, TypeScript under packages/node/src, Rust under
-# packages/rust/src. The reusable workflow scans a single root, so it is called
-# once per language.
+# packages/python, TypeScript under packages/node/src. Rust points at the crate
+# root, packages/rust, because detection needs the Cargo.toml in scope. The
+# reusable workflow scans a single root, so it is called once per language.
 
 on:
   pull_request:
@@ -41,7 +41,7 @@ jobs:
     uses: thekevinscott/testing-conventions/.github/workflows/testing-conventions.yml@v0
     with:
       languages: '["rust"]'
-      source: packages/rust/src
+      source: packages/rust
 
   typescript:
     name: TypeScript

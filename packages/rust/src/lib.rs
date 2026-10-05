@@ -1,5 +1,7 @@
 use clap::Parser;
 
+pub mod entrypoint;
+
 #[derive(Parser, Debug)]
 #[command(
     name = "mynewproduct",
