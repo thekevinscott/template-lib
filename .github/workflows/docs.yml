@@ -6,10 +6,19 @@ on:
     paths:
       - 'docs/**'
       - '.github/workflows/docs.yml'
+      # Mirrors srcExclude in docs/.vitepress/config.ts: these never reach the site.
+      - '!docs/**/AGENTS.md'
+      - '!docs/changelog.d/**'
+      - '!docs/migrations.d/**'
+      - '!docs/internals/**'
   pull_request:
     paths:
       - 'docs/**'
       - '.github/workflows/docs.yml'
+      - '!docs/**/AGENTS.md'
+      - '!docs/changelog.d/**'
+      - '!docs/migrations.d/**'
+      - '!docs/internals/**'
   workflow_dispatch:
 
 permissions:
