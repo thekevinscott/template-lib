@@ -81,6 +81,12 @@ class Loader(Protocol):
 
 ---
 
+## Imports
+
+**Absolute imports only.** Every import of first-party code spells the full package path (`from mynewproduct.config import load`), never a relative one (`from .config import load`). PEP 8 recommends absolute imports: they read the same wherever the module sits, survive moves, and grep cleanly. Enforced by ruff `TID252` with `[tool.ruff.lint.flake8-tidy-imports] ban-relative-imports = "all"`; `ruff check --fix --unsafe-fixes` rewrites existing relative imports.
+
+---
+
 ## Async / sync discipline
 
 **Default to async.**

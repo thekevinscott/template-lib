@@ -215,7 +215,11 @@ select = [
   "PTH",  # use pathlib
   "PLR",  # pylint refactor (incl. complexity)
   "RUF",  # ruff-specific
+  "TID252",  # relative imports (absolute only)
 ]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
 ```
 
 Enable rule groups deliberately. The set above is a reasonable starting point. `D` (pydocstyle) is rarely worth the friction it adds.

@@ -169,8 +169,11 @@ line-length = 100
 target-version = "py312"
 
 [tool.ruff.lint]
-select = ["E", "W", "F", "I", "B", "C4", "C90", "UP", "ARG", "SIM", "PTH", "PLR", "RUF"]
+select = ["E", "W", "F", "I", "B", "C4", "C90", "UP", "ARG", "SIM", "PTH", "PLR", "RUF", "TID252"]
 ignore = []
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
 
 [tool.ruff.lint.mccabe]
 max-complexity = 10
