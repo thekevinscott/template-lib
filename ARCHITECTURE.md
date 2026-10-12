@@ -29,7 +29,8 @@ package's `testing-conventions.toml`, `changelog.d/`, `migrations.d/`, and
 
 - Per-language workflow (`rust.yml`, `python.yml`, `node.yml`) runs lint + test + build with path filters.
 - [`conventions.yml`](.github/workflows/conventions.yml) calls the upstream [testing-conventions workflow](https://github.com/thekevinscott/testing-conventions/blob/v0/.github/workflows/testing-conventions.yml) at `v0`; its current coverage is described below.
-- `changelog.yml` enforces a changelog fragment under `docs/changelog.d/` on PRs that touch package code.
+- `changelog.yml` runs the upstream testing-conventions `changelog` gate: a fragment under `docs/changelog.d/` on PRs that touch package code, plus `docs/migrations.d/` when a commit carries a `breaking:` trailer.
+- `workflow-lint.yml` runs the upstream testing-conventions `workflow-lint` gate, which fails on logic inlined in workflow YAML.
 - `docs.yml` builds + deploys the VitePress site.
 - `pr-monitor.yml` gates merge on the aggregate CI status.
 

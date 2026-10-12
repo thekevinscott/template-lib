@@ -1,5 +1,13 @@
 name: Changelog
 
+# Require a changelog fragment (docs/changelog.d/) on PRs that change a
+# package's public surface, plus a migrations fragment (docs/migrations.d/)
+# when a commit carries a `breaking:` trailer. A `skip-changelog:` trailer
+# bypasses the check. Runs testing-conventions' changelog gate alone; the
+# `languages` / `source` inputs only satisfy the reusable workflow's detect
+# step, the changelog gate itself diffs the whole repo against the base.
+# See docs/internals/repo.md.
+
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
@@ -11,21 +19,12 @@ on:
 
 permissions:
   contents: read
-  pull-requests: read
 
 jobs:
-  enforce:
-    name: Changelog fragment added
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-
-      - uses: astral-sh/setup-uv@v7
-
-      - name: Check
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: uv run --project ci ci check-changelog
+  changelog:
+    name: Changelog
+    uses: thekevinscott/testing-conventions/.github/workflows/testing-conventions.yml@v0
+    with:
+      languages: '["python"]'
+      source: packages/python
+      gates: '["changelog"]'
