@@ -18,8 +18,6 @@ Conventions, supervision rules, and per-language style live under
 - `internals/` holds internal-only packages, built and tested to the same
   standards but never published. Private workspaces that only produce build
   artifacts for a published package belong here too.
-- The root-level `ci/` package is an exception: CI logic stays there under the
-  workflow policy below.
 
 ## Workflow
 
@@ -30,8 +28,10 @@ Conventions, supervision rules, and per-language style live under
   standard, enforced in CI by `.github/workflows/conventions.yml`.
 - **CI logic lives in scripts, not workflow YAML.** `run:` / `github-script`
   steps stay trivial glue; anything with iteration, `case` dispatch, or
-  text-munging moves to a tested script invoked as a one-liner. Enforced by
-  testing-conventions' `workflow-lint` check
+  text-munging moves to a tested script invoked as a one-liner. A gate more
+  than one repo needs belongs upstream in the tool that owns it
+  (testing-conventions, putitoutthere, pr-monitor), not in a repo-local
+  package. Enforced by testing-conventions' `workflow-lint` check
   (`.github/workflows/workflow-lint.yml`); the bright line and rationale are in
   `docs/internals/repo.md`.
 - Every PR that changes a public API adds a **changelog fragment**: one
@@ -41,8 +41,10 @@ Conventions, supervision rules, and per-language style live under
   `packages/<pkg>/CHANGELOG.md` / `MIGRATIONS.md` are pointer stubs — never
   append entries to them. For version attribution ("which release shipped X"),
   map fragment dates against tags via `git log --tags`. Enforced by
-  `.github/workflows/changelog.yml`. Bypass with a `skip-changelog:` git
-  trailer for genuinely internal refactors.
+  testing-conventions' `changelog` check (`.github/workflows/changelog.yml`).
+  Two git trailers steer it: `skip-changelog: <reason>` bypasses the check for
+  genuinely internal refactors, and `breaking: <reason>` marks a breaking
+  change, which then also requires the `docs/migrations.d/` fragment.
 - Pre-commit hooks (`just hooks` to install) gate formatting, gitleaks, and per-language linters.
 
 ## First-publish prerequisites

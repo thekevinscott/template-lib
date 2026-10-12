@@ -65,22 +65,19 @@ docs-dev:
 docs-build:
     cd docs && pnpm run build
 
-# ---- CI gates (repo-internal `ci` package) --------------------------------
+# ---- CI gates (testing-conventions) --------------------------------------
 
 # Gate: fail if any workflow / composite-action YAML encodes a non-trivial
 # inline script (docs/internals/repo.md). Run from the repo root.
 gha-lint:
     npx --yes testing-conventions workflow-lint
 
-gha-test:
-    cd ci && uv run pytest
-
 # ---- Aggregates ----------------------------------------------------------
 
 lint: rust-lint py-lint node-lint gha-lint
 format: rust-format py-format
 typecheck: py-typecheck node-typecheck
-test: rust-test py-test node-test gha-test
+test: rust-test py-test node-test
 build: rust-build py-build node-build
 
 ci: lint typecheck test

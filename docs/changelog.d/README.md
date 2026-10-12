@@ -19,5 +19,6 @@ accumulate as the permanent record.
 
 Enforced by [`changelog.yml`](../../.github/workflows/changelog.yml): a PR
 that changes non-test source under `packages/<pkg>/` must add a fragment
-naming that package (here or in `migrations.d/`). Bypass with a
-`skip-changelog:` git trailer for genuinely internal refactors.
+naming that package. Bypass with a `skip-changelog:` git trailer for
+genuinely internal refactors. A `breaking:` git trailer marks a breaking
+change and also requires a [`../migrations.d/`](../migrations.d/) fragment.
