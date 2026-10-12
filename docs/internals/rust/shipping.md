@@ -71,7 +71,7 @@ The full three-artifact shape (Rust crate + npm wrapper + PyPI wheel) and the wr
 | `build-check.yml` | `uses: thekevinscott/putitoutthere/.github/workflows/build.yml@v0` — full plan + per-target build matrix, no publish | PRs touching build inputs |
 | `docs.yml` | `cargo doc` build (catches broken intra-doc links) | push to main |
 | `release.yml` | `uses: thekevinscott/putitoutthere/.github/workflows/release.yml@v0` | push to main |
-| `changelog-check.yml` | changelog fragment added under `docs/changelog.d/` (or `skip-changelog:` trailer) | every PR |
+| `changelog.yml` | changelog fragment added under `docs/changelog.d/` (or `skip-changelog:` trailer); a `breaking:` trailer also requires a `docs/migrations.d/` fragment | every PR |
 
 > **Two `check.yml`s — don't conflate them.** The workflow file named
 > `check.yml` is piot's *config* gate: it validates `putitoutthere.toml`,
