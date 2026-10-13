@@ -1,5 +1,10 @@
 import { defineConfig } from 'vitepress'
 
+// Per-project value: a clone renames this along with the identical
+// `repository` URLs in packages/{node/package.json,python/pyproject.toml,rust/Cargo.toml}
+// (a find-and-replace of the URL covers all of them) and `base` below.
+const repository = 'https://github.com/thekevinscott/template-lib'
+
 export default defineConfig({
   title: '',
   description: '',
@@ -49,6 +54,7 @@ export default defineConfig({
         },
       ],
     },
+    socialLinks: [{ icon: 'github', link: repository }],
     search: { provider: 'local' },
     outline: [2, 3],
   },
