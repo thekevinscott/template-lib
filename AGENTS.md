@@ -7,7 +7,7 @@ Conventions, supervision rules, and per-language style live under
 ## Where to read first
 
 - `docs/internals/repo.md` — cross-cutting rules (changelog/migration fragment philosophy, public-API surface, CI-logic-in-scripts).
-- `docs/AGENTS.md` — how the docs site is organized ([Diataxis](https://diataxis.fr)) and the per-page quadrant rule.
+- `docs/AGENTS.md` — what the docs site holds and what stays out of the build.
 - `docs/internals/rust/` — Rust style, testing, shipping, review, code-smells.
 - `docs/internals/python/` — Python style, testing, shipping, review, setup.
 - `docs/internals/typescript/` — TypeScript style, testing, shipping, review, setup.

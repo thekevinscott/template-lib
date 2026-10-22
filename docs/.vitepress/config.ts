@@ -14,46 +14,29 @@ export default defineConfig({
   // the build. The changelog/migration fragment folders are the raw record
   // (one file per PR, see docs/internals/repo.md); they never publish either.
   // internals/ is contributor/agent-facing material, also excluded.
-  srcExclude: ['**/AGENTS.md', 'changelog.d/**', 'migrations.d/**', 'internals/**'],
+  // migrations.md is a pointer stub at the conventional path.
+  srcExclude: ['**/AGENTS.md', 'changelog.d/**', 'migrations.d/**', 'internals/**', 'migrations.md'],
   themeConfig: {
-    // Top-level nav is the four Diataxis quadrants, mirroring the
-    // testing-conventions docs site. See docs/AGENTS.md.
-    nav: [
-      { text: 'Getting Started', link: '/getting-started' },
-      { text: 'How-to Guides', link: '/guide/' },
-      { text: 'Reference', link: '/reference/' },
-      { text: 'Explanation', link: '/explanation/' },
+    sidebar: [
+      {
+        items: [
+          { text: 'Motivation', link: '/motivation' },
+          { text: 'Getting Started', link: '/getting-started' },
+          { text: 'Feature', link: '/feature' },
+        ],
+      },
+      {
+        text: 'Guides',
+        items: [{ text: 'Guide', link: '/guides/guide' }],
+      },
+      {
+        text: 'API',
+        items: [
+          { text: 'Config', link: '/api/config' },
+          { text: 'CLI', link: '/api/cli' },
+        ],
+      },
     ],
-    sidebar: {
-      '/': [
-        {
-          text: 'Tutorial',
-          items: [
-            { text: 'Getting Started', link: '/getting-started' },
-          ],
-        },
-        {
-          text: 'How-to Guides',
-          items: [
-            { text: 'Overview', link: '/guide/' },
-            { text: 'Testing conventions', link: '/guide/testing-conventions' },
-          ],
-        },
-        {
-          text: 'Reference',
-          items: [
-            { text: 'API', link: '/reference/' },
-            { text: 'Migrations', link: '/migrations' },
-          ],
-        },
-        {
-          text: 'Explanation',
-          items: [
-            { text: 'Overview', link: '/explanation/' },
-          ],
-        },
-      ],
-    },
     socialLinks: [{ icon: 'github', link: repository }],
     search: { provider: 'local' },
     outline: [2, 3],
