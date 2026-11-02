@@ -29,7 +29,8 @@ build = "maturin"
 depends_on = ["mynewproduct-rust"]
 globs = [
   "packages/python/!(testing-conventions.toml)",
-  "packages/python/!(changelog.d|migrations.d|e2e-attestations)/**",
+  "packages/python/!(changelog.d|migrations.d|e2e-attestations|tests)/**",
+  "packages/python/tests/!(e2e)/**",
   "packages/rust/!(testing-conventions.toml)",
   "packages/rust/!(changelog.d|migrations.d|e2e-attestations)/**",
   "LICENSE",
@@ -52,7 +53,8 @@ build = [{ mode = "bundled-cli", name = "@mynewproduct/{triple}" }]
 depends_on = ["mynewproduct-rust"]
 globs = [
   "packages/node/!(testing-conventions.toml)",
-  "packages/node/!(changelog.d|migrations.d|e2e-attestations)/**",
+  "packages/node/!(changelog.d|migrations.d|e2e-attestations|test)/**",
+  "packages/node/test/!(e2e)/**",
   "packages/rust/!(testing-conventions.toml)",
   "packages/rust/!(changelog.d|migrations.d|e2e-attestations)/**",
   "LICENSE",

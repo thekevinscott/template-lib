@@ -1,0 +1,44 @@
+name: E2E
+
+# A change only to e2e tests or receipts runs the e2e-verify gate, not each
+# package's full suite. The other workflows exclude these paths. In a PR that
+# also touches source, conventions.yml runs the gate too.
+
+on:
+  pull_request:
+    paths:
+      - 'packages/*/e2e-attestations/**'
+      - 'packages/python/tests/e2e/**'
+      - 'packages/node/test/e2e/**'
+      - '.github/workflows/e2e.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    name: Python
+    uses: thekevinscott/testing-conventions/.github/workflows/testing-conventions.yml@v0
+    with:
+      languages: '["python"]'
+      source: packages/python
+      run_e2e: true
+      gates: '["e2e-verify"]'
+
+  rust:
+    name: Rust
+    uses: thekevinscott/testing-conventions/.github/workflows/testing-conventions.yml@v0
+    with:
+      languages: '["rust"]'
+      source: packages/rust
+      run_e2e: true
+      gates: '["e2e-verify"]'
+
+  typescript:
+    name: TypeScript
+    uses: thekevinscott/testing-conventions/.github/workflows/testing-conventions.yml@v0
+    with:
+      languages: '["typescript"]'
+      source: packages/node/src
+      run_e2e: true
+      gates: '["e2e-verify"]'

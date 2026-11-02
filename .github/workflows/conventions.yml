@@ -23,6 +23,9 @@ on:
       - 'packages/**'
       - '!packages/*/changelog.d/**'
       - '!packages/*/migrations.d/**'
+      - '!packages/*/e2e-attestations/**'
+      - '!packages/python/tests/e2e/**'
+      - '!packages/node/test/e2e/**'
       - '.github/workflows/conventions.yml'
 
 permissions:

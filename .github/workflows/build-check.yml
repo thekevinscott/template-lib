@@ -20,6 +20,8 @@ on:
       - '!packages/*/changelog.d/**'
       - '!packages/*/migrations.d/**'
       - '!packages/*/e2e-attestations/**'
+      - '!packages/python/tests/e2e/**'
+      - '!packages/node/test/e2e/**'
       - 'putitoutthere.toml'
       - 'LICENSE'
       - '.github/workflows/build-check.yml'
