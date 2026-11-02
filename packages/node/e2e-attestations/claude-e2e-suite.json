@@ -1,0 +1,7 @@
+{
+  "command": "just node-e2e",
+  "ran_at": 1793621954,
+  "exit_code": 0,
+  "commit": "baa2d75a02647ca6e647889c75552b231ea76cc7",
+  "branch": "claude/e2e-suite"
+}

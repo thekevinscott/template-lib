@@ -37,6 +37,9 @@ py-test:
 py-build:
     cd packages/python && maturin build --release
 
+py-e2e:
+    cd packages/python && uv run --isolated --no-project --with . --with pytest pytest tests/e2e -q
+
 # ---- Node ----------------------------------------------------------------
 
 node-install:
@@ -53,6 +56,9 @@ node-test:
 
 node-build:
     cd packages/node && pnpm run build
+
+node-e2e: rust-build node-build
+    cd packages/node && pnpm exec vitest run --config test/e2e/vitest.config.ts
 
 # ---- Docs ----------------------------------------------------------------
 
@@ -79,6 +85,7 @@ format: rust-format py-format
 typecheck: py-typecheck node-typecheck
 test: rust-test py-test node-test
 build: rust-build py-build node-build
+e2e: py-e2e node-e2e
 
 ci: lint typecheck test
 

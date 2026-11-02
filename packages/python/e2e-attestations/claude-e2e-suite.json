@@ -1,0 +1,7 @@
+{
+  "command": "just py-e2e",
+  "ran_at": 1793621534,
+  "exit_code": 0,
+  "commit": "d5dcc0cced0405222eaf96471bd4358dd9a1f4fc",
+  "branch": "claude/e2e-suite"
+}
