@@ -1,0 +1,7 @@
+{
+  "command": "uv run --isolated --no-project --python 3.10 --with . mynewproduct --version",
+  "ran_at": 1793621313,
+  "exit_code": 0,
+  "commit": "c6ccd401c88af8b6cd1b4447b0a0283e13ed7e80",
+  "branch": "claude/drop-py39"
+}
