@@ -58,7 +58,7 @@ node-build:
     cd packages/node && pnpm run build
 
 node-e2e: rust-build node-build
-    cd packages/node && pnpm exec vitest run --config vitest.e2e.config.ts
+    cd packages/node && pnpm exec vitest run --config test/e2e/vitest.config.ts
 
 # ---- Docs ----------------------------------------------------------------
 
