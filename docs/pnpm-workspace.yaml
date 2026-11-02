@@ -1,0 +1,5 @@
+# pnpm 11+ fails install when a dependency's build scripts have no recorded
+# decision (ERR_PNPM_IGNORED_BUILDS). esbuild arrives via vitepress; same
+# decision and reasoning as packages/node/pnpm-workspace.yaml.
+allowBuilds:
+  esbuild: false
