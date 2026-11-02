@@ -39,3 +39,10 @@ cargo install testing-conventions
 testing-conventions unit location --language typescript packages/node/src
 testing-conventions unit location --language python packages/python
 ```
+
+## E2E attestation
+
+The workflow also runs the `e2e-verify` gate. A PR that changes package source
+needs an e2e receipt. Run `testing-conventions e2e attest '<e2e command>'` on
+the PR branch, from the package root; it runs the command and commits the
+receipt under `e2e-attestations/`. Then push.
