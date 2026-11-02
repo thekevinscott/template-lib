@@ -26,6 +26,10 @@ Every PR that changes public API adds at least one fragment naming each touched 
 
 Public-API surface for the purpose of these fragments: every exported value/type, every CLI flag, every config key, every observable artifact (tag format, GitHub Release body shape). Internal refactors, test-only changes, and docs-only edits stay out.
 
+## E2E attestation
+
+[`conventions.yml`](../../.github/workflows/conventions.yml) runs testing-conventions' `e2e-verify` gate. A PR that changes package source needs an e2e receipt. Run `testing-conventions e2e attest '<e2e command>'` on the PR branch, from the package root; it runs the command and commits the receipt under `e2e-attestations/`. Then push.
+
 ## CI logic in scripts, not workflow YAML
 
 CI behavior that's more than glue lives in an **executable, tested script**, not inline in workflow or composite-action YAML. An inline `run:` / `actions/github-script` block can't be run locally, linted, or unit-tested — it only executes inside a CI run, where a typo surfaces as a failed job three minutes later. The fix is the move the rest of this repo already makes: turn it into source and give it a colocated test.

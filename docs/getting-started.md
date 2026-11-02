@@ -1,7 +1,3 @@
----
-diataxis: tutorial
----
-
 # Getting Started
 
 <!-- One-paragraph orientation: what this is, what the reader will accomplish. -->
@@ -25,8 +21,8 @@ npm install <package>
 
 <!-- Smallest end-to-end example that runs successfully. -->
 
-## Next steps
+## Next
 
-- [How-to Guides](./guide/) — task-oriented recipes.
-- [Reference](./reference/) — the full API surface.
-- [Explanation](./explanation/) — the concepts and "why" behind the design.
+- [Feature](./feature) — what it does.
+- [Guides](./guides/guide) — common tasks.
+- [API](./api/config) — every option and config key.
