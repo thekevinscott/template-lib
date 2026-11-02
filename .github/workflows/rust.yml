@@ -6,6 +6,7 @@ on:
       - 'packages/rust/**'
       - '!packages/rust/changelog.d/**'
       - '!packages/rust/migrations.d/**'
+      - '!packages/rust/e2e-attestations/**'
       - '.github/workflows/rust.yml'
 
 permissions:

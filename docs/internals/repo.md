@@ -30,6 +30,8 @@ Public-API surface for the purpose of these fragments: every exported value/type
 
 [`conventions.yml`](../../.github/workflows/conventions.yml) runs testing-conventions' `e2e-verify` gate. A PR that changes package source needs an e2e receipt. Run `testing-conventions e2e attest '<e2e command>'` on the PR branch, from the package root; it runs the command and commits the receipt under `e2e-attestations/`. Then push.
 
+A PR that touches only e2e tests (`packages/python/tests/e2e/`, `packages/node/test/e2e/`) or receipts skips the per-package suites and runs [`e2e.yml`](../../.github/workflows/e2e.yml), which is just the `e2e-verify` gate. Keep those paths in sync across the workflows and the `putitoutthere.toml` globs.
+
 ## CI logic in scripts, not workflow YAML
 
 CI behavior that's more than glue lives in an **executable, tested script**, not inline in workflow or composite-action YAML. An inline `run:` / `actions/github-script` block can't be run locally, linted, or unit-tested — it only executes inside a CI run, where a typo surfaces as a failed job three minutes later. The fix is the move the rest of this repo already makes: turn it into source and give it a colocated test.

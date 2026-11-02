@@ -13,6 +13,9 @@ on:
     types: [opened, synchronize, reopened, edited]
     paths:
       - 'packages/**'
+      - '!packages/*/e2e-attestations/**'
+      - '!packages/python/tests/e2e/**'
+      - '!packages/node/test/e2e/**'
       - 'docs/changelog.d/**'
       - 'docs/migrations.d/**'
       - '.github/workflows/changelog.yml'
