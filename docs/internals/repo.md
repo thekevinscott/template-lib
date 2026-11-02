@@ -30,6 +30,8 @@ Public-API surface for the purpose of these fragments: every exported value/type
 
 [`conventions.yml`](../../.github/workflows/conventions.yml) runs testing-conventions' `e2e-verify` gate. A PR that changes package source needs an e2e receipt. Run `testing-conventions e2e attest '<e2e command>'` on the PR branch, from the package root; it runs the command and commits the receipt under `e2e-attestations/`. Then push.
 
+Each wrapper ships one happy-path e2e that runs the real CLI: `just py-e2e` (`packages/python/tests/e2e/`) and `just node-e2e` (`packages/node/test/e2e/`), or `just e2e` for both. From the package root that is `testing-conventions e2e attest 'just py-e2e'`. Grow the suite as commands land. The Rust crate has no e2e of its own; it is covered through the wrappers.
+
 A PR that touches only e2e tests (`packages/python/tests/e2e/`, `packages/node/test/e2e/`) or receipts skips the per-package suites and runs [`e2e.yml`](../../.github/workflows/e2e.yml), which is just the `e2e-verify` gate. Keep those paths in sync across the workflows and the `putitoutthere.toml` globs.
 
 ## CI logic in scripts, not workflow YAML
